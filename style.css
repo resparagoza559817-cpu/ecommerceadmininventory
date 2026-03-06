@@ -1,0 +1,113 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2e1065 0%, #000000 100%);
+    color: #f3f4f6;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+
+a {
+    color: #4ade80; 
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #22c55e;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+}
+
+
+form, table, h2 {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-bottom: 20px;
+}
+
+
+input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #7c3aed; 
+    border-radius: 6px;
+    color: white;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4ade80; 
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
+
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4ade80; 
+    border: none;
+    border-radius: 6px;
+    color: #064e3b;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+    background: #22c55e;
+    transform: translateY(-2px);
+}
+
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    border: none;
+}
+
+th {
+    background: #7c3aed;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tr:hover {
+    background: rgba(124, 58, 237, 0.1);
+}
+
+
+td a {
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+
+p[style*="color:red"] {
+    background: rgba(239, 68, 68, 0.2);
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #ef4444;
+    color: #fca5a5 !important;
+}
