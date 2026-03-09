@@ -1,40 +1,61 @@
 <?php
 session_start();
-require 'db.php';
+$errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
+if (isset($_GET['registered'])) {
+    $success = "Registration successful! Please log in.";
+}
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $user = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $pass = $_POST['password'];
 
-        
-        setcookie("last_login", date("Y-m-d H:i:s"), time() + (86400 * 30), "/");
-
-        header("Location: dashboard.php");
+    if (empty($user) || empty($email) || empty($pass)) {
+        $errors[] = "All fields are required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format.";
+    } elseif (strlen($pass) < 5) {
+        $errors[] = "Password must be at least 5 characters.";
     } else {
-        $error = "Invalid username or password.";
+        if ($user === 'admin' && $pass === 'admin') {
+            $_SESSION['username'] = $user;
+            setcookie("user_login", $user, time() + 3600, "/");
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            $errors[] = "Invalid username or password.";
+        }
     }
 }
 ?>
-<link rel="stylesheet" href="style.css">
-<form method="POST">
-    <h2>Login</h2>
-    <?php if(isset($error)) echo "<p style='color:red'>$error</p>"; ?>
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>
-<p>Last Login: <?= isset($_COOKIE['last_login']) ? $_COOKIE['last_login'] : 'First time!' ?></p>
-
-<p>Don't have an account? <a href="register.php">Register here</a></p>
-
-<p style="font-size: 0.8em; color: gray;">
-    Last Login: <?= isset($_COOKIE['last_login']) ? $_COOKIE['last_login'] : 'First time using this device!' ?>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="design.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="logo-side">
+            <img src="logowogo2.png" alt="Logo" class="main-logo">
+        </div>
+        <div class="form-side">
+            <form method="POST">
+                <h2>Problem Solver Surplus!</h2>
+                <?php 
+                    if(isset($success)) echo "<p style='color:rgb(36, 205, 56);'>$success</p>";
+                    foreach($errors as $err) echo "<p style='color:red;'>$err</p>"; 
+                ?>
+                <input type="text" name="username" placeholder="Username" value="<?php echo $_COOKIE['user_login'] ?? ''; ?>">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" name="login">Login</button>
+                <p style="color:white; margin-top:10px;">New here? <a href="signup.php" style="color:rgb(36, 205, 56);">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
