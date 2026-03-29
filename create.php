@@ -17,9 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <link rel="stylesheet" href="style.css">
-<form method="POST">
-    <input type="text" name="name" placeholder="Product Name" required>
-    <input type="number" step="0.01" name="price" placeholder="Price" required>
-    <input type="number" name="stock" placeholder="Stock" required>
-    <button type="submit">Add Product</button>
-</form>
+<?php include 'navbar.php'; ?>
+<h2>Add New Inventory Item</h2>
+
+<div class="form-group">
+    <label for="name">Product Name</label>
+    <input type="text" id="name" name="name" placeholder="e.g. BSODA" required>
+</div>
+
+<div class="form-group">
+    <label for="price">Price ($)</label>
+    <input type="number" step="0.01" id="price" name="price" placeholder="0.00" required>
+</div>
+
+<div class="form-group">
+    <label for="stock">Stock Quantity</label>
+    <input type="number" id="stock" name="stock" placeholder="0" required>
+</div>
+
+<button type="submit">Save to Inventory</button>

@@ -13,6 +13,7 @@ $stmt = $pdo->query("SELECT * FROM products");
 $products = $stmt->fetchAll();
 ?>
 <link rel="stylesheet" href="style.css">
+<?php include 'navbar.php'; ?>
 <h2>Welcome, <?php echo $_SESSION['username']; ?>!</h2>
 <a href="logout.php">Logout</a> | <a href="create.php">Add Product</a>
 

@@ -21,10 +21,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <link rel="stylesheet" href="style.css">
+<?php include 'navbar.php'; ?>
 <form method="POST">
     <h2>Edit Product</h2>
-    <input type="text" name="name" value="<?= $product['name'] ?>" required>
-    <input type="number" step="0.01" name="price" value="<?= $product['price'] ?>" required>
-    <input type="number" name="stock" value="<?= $product['stock'] ?>" required>
-    <button type="submit">Update</button>
-</form>
+    
+    <div class="form-group">
+        <label for="name">Product Name</label>
+        <input type="text" id="name" name="name" value="<?= htmlspecialchars($product['name']) ?>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price ($)</label>
+        <input type="number" step="0.01" id="price" name="price" value="<?= $product['price'] ?>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="stock">Stock Quantity</label>
+        <input type="number" id="stock" name="stock" value="<?= $product['stock'] ?>" required>
+    </div>
+
+    <button type="submit">Update Item</button>
+</nav>

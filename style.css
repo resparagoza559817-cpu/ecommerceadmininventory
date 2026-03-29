@@ -111,3 +111,62 @@ p[style*="color:red"] {
     border-left: 4px solid #ef4444;
     color: #fca5a5 !important;
 }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #4ade80; 
+    text-align: left;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #4ade80; /* Using your green accent color */
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+.navbar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #7c3aed;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #f3f4f6;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.navbar a:hover {
+    color: #4ade80;
+}
+
+.navbar a.active {
+    color: #4ade80;
+    border-bottom: 2px solid #4ade80;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
